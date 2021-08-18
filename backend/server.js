@@ -1,10 +1,10 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import colors from 'colors';
-import connectDB from './config/db.js';
-import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+const express = require('express');
+const dotenv = require('dotenv');
+const colors = require('colors');
+const connectDB = require('./config/db');
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
-import productRoutes from './routes/productRoutes.js';
+const productRoutes = require('./routes/productRoutes');
 
 dotenv.config();
 

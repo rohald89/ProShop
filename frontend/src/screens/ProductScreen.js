@@ -8,7 +8,7 @@ import Loader from '../components/Loader';
 import { listProductDetails } from '../actions/productActions';
 
 const ProductScreen = ({ history, match }) => {
-    const [qty, setQty] = useState(0);
+    const [qty, setQty] = useState(1);
 
     const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ const ProductScreen = ({ history, match }) => {
 
     const addToCartHandler = () => {
         history.push(`/cart/${match.params.id}?qty=${qty}`)
-    }
+    };
     
     return (
         <>
@@ -96,7 +96,7 @@ const ProductScreen = ({ history, match }) => {
                                 onClick={addToCartHandler}
                                 className="btn-block" 
                                 type="button" 
-                                disabled={product.countInStock === 0 }
+                                disabled={product.countInStock === 0 } 
                                 >
                                     Add To Card
                                 </Button>

@@ -24,26 +24,28 @@ const ProfileScreen = ({history, location}) => {
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
 
-    const orderListMy = useSelector(state => state.orderListMy);
-    const { loading: loadingOrders, error:errorOrders, orders } = orderListMy;
-
     const userUpdateProfile = useSelector(state => state.userUpdateProfile);
     const { success } = userUpdateProfile;
 
+    const orderListMy = useSelector(state => state.orderListMy);
+    const { loading: loadingOrders, error:errorOrders, orders } = orderListMy;
+
+
     useEffect(() => {
-        if(!userInfo) {
-            history.push('/login');
+        if (!userInfo) {
+          history.push('/login');
         } else {
-            if(!user || !user.name || success) {
-                dispatch({ type: USER_UPDATE_PROFILE_RESET});
-                dispatch(getUserDetails('profile'));
-                dispatch(listMyOrders());
-            } else {
-                setName(user.name);
-                setEmail(user.email);
-            }
+          if (!user || !user.name || !success) {
+            dispatch({ type: USER_UPDATE_PROFILE_RESET });
+            dispatch(getUserDetails('profile'));
+            dispatch(listMyOrders());
+          } else {
+            setName(user.name);
+            setEmail(user.email);
+          }
         }
-    }, [dispatch, history, userInfo, user, success]);
+      }, [dispatch, history, userInfo, success]);
+      //TODO removed user from dependancy array due to causing an infinite loop
 
 
     const submitHandler = (e) => {
@@ -53,7 +55,7 @@ const ProfileScreen = ({history, location}) => {
             setMessage('Passwords do not match');
         } else {
             // DISPATCH UPDATE PROFILE
-            dispatch(updateUserProfile({ id: user._id, name, email, password }))
+            dispatch(updateUserProfile({ id: user._id, name, email, password }));
         }
     }
 

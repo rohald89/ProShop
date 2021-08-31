@@ -33,9 +33,9 @@ const ProfileScreen = ({history, location}) => {
 
     useEffect(() => {
         if (!userInfo) {
-          history.push('/login');
+          history.push('/login')
         } else {
-          if (!user || !user.name || !success) {
+          if (!user || !user.name || success) {
             dispatch({ type: USER_UPDATE_PROFILE_RESET });
             dispatch(getUserDetails('profile'));
             dispatch(listMyOrders());
@@ -44,8 +44,7 @@ const ProfileScreen = ({history, location}) => {
             setEmail(user.email);
           }
         }
-      }, [dispatch, history, userInfo, success]);
-      //TODO removed user from dependancy array due to causing an infinite loop
+      }, [dispatch, history, userInfo, user, success])
 
 
     const submitHandler = (e) => {

@@ -34,7 +34,6 @@ const UserListScreen = ({ history }) => {
 
   return (
     <>
-    {console.log(users)}
       <h1>Users</h1>
       {loading ? (
         <Loader />
